@@ -1,3 +1,4 @@
+$(document).ready(function(){
 // Initialize Firebase
   var config = {
     apiKey: "AIzaSyAxg_jV3wlAIZ6DOb1CE9GYM6DSzdSqrJE",
@@ -18,7 +19,7 @@ $("#addtrain").on("click", function(){
 //store user input into variables
 	var newname = $("#name-input").val().trim();
 	var newdestination = $("#destination-input").val().trim();
-	var newfirsttraintime = moment($("#traintime-input").val().trim(), "HH:mm").format("HH:mm");
+	var newfirsttraintime = moment($("#traintime-input").val().trim(), "hh:mm").format("hh:mm");
 	var newfrequency = $("#frequency-input").val().trim();
 
 //creating object to store each train input
@@ -60,7 +61,7 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey){
 
 	//calculate the next arrival time and minutes away
 		//first train time
-		var firsttrain = moment(newfirsttraintime, "HH:mm").subtract(1,"years");
+		var firsttrain = moment(newfirsttraintime, "hh:mm").subtract(1,"years");
 		//Difference between the current time and first train time
 		var diffTime = moment().diff(moment(firsttrain), "minutes");
 		//time in which the last train left
@@ -78,7 +79,8 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey){
   		newfrequency + "</td><td>" + moment(nextarrival).format("HH:mm") + "</td><td>" + minutesaway + "</td></tr>");
 
 
-})
+});
+});
 
 
 
